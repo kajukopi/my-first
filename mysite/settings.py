@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls',
     'tinymce',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -90,14 +89,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
