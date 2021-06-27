@@ -2,11 +2,10 @@ import datetime
 from django.utils import timezone
 from django.db import models
 from django.contrib import admin
-from tinymce.models import HTMLField
 
 class Blog(models.Model):
     blog_text = models.CharField(max_length=200)
-    blog_subject = HTMLField()
+    blog_subject = models.CharField(max_length=1000)
     blog_date = models.DateTimeField('blog published')
     
     @admin.display(
