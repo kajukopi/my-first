@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/bootstrap.min.css' %}"> {% block stylesheet %}{% endblock %}
+</head>
+
+<body>
+    {% block body %}
+    <!-- #region -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class=" container-fluid ">
+            <a class="navbar-brand text-light" href="http://localhost:8000/ ">Mueza Blog</a>
+            <button class="navbar-toggler " type="button " data-bs-toggle="collapse " data-bs-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
+            <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+
+            </div>
+        </div>
+    </nav>
+    <!-- #endregion -->
+    <br>
+    <!-- #region -->
+    <div class="container-fluid ">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+            {% for blog in latest_blog_list %}
+            <div class="col ">
+                <div class="p-3 border bg-dark rounded ">
+                    <figure>
+                        <blockquote class="blockquote ">
+                            <p class="text-light">{{ blog.blog_text }}</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer ">
+                            {{ blog.blog_date }}
+                            <br>
+                            <cite title="Source Title ">
+                                {{ blog.was_published_recently }}
+                            </cite>
+                        </figcaption>
+                        <a href="{% url 'polls:detail' blog.id %}" class="btn btn-primary">Read more</a>
+                    </figure>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% block content %} {% endblock %} {% endblock %}
+
+    <script src="{% static 'polls/css/popper.min.js' %} "></script>
+    <script src="{% static 'polls/css/bootstrap.min.js' %} "></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea', // change this value according to your HTML
+            plugins: 'media',
+            menubar: 'insert',
+            toolbar: 'media'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{% extends 'polls/index.html' %} {% load crispy_forms_tags %} {% block content %} {% csrf_token %}
+<div class="card mb-3 bg-dark text-light">
+    <div class="card-body">
+        <h5 class="card-title">{{ blog.blog_text }}</h5>
+        <article>{{ blog.blog_subject}}</article>
+        <p class="card-text"><small class="text-muted">{{ blog.blog_date}}</small></p>
+        <form action="{% url 'polls:vote' blog.id %}" method="post">
+            {% for choice in blog.choice_set.all %}
+            <button type="submit" class="btn btn-primary" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            {{ choice.choice_text }} <span class="badge bg-secondary">{{ choice.votes }}</span>
+            </button> {% endfor %}
+        </form>
+    </div>
+</div>
+
+
+<br>{% endblock %}
